@@ -1,0 +1,33 @@
+<head>
+<script>
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function func()
+{
+	const delta = 2, daysRoot=14;
+	const rootDate = new Date('06 Feb 2023 18:30:00 GMT');
+	const tag= document.getElementById("ol");
+	while (tag.firstChild) {
+      tag.removeChild(tag.firstChild);
+    }
+	let curr = rootDate;
+	const amt = parseInt(document.getElementById("num").value) +1;
+	for(let i=0; i< amt; i++) {
+		//var node = document.createElement('li');
+		//node.appendChild(document.createTextNode(curr.toString()));
+		tag.innerHTML+='<li>'+curr.toString()+'</li>';
+		let randDays = daysRoot-delta+getRandomInt(delta*2+1);
+		curr.setDate(curr.getDate()+randDays);
+	}
+}
+</script>
+</head>
+<body>
+<label>Pick Num Iterations (incl. start):</label>
+<input id="num" type="number" min="1" max="10000000000" value="1"/>
+<button onclick=func()>Go!</button>
+<ol id="ol">
+</ol>
+</body>
